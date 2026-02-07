@@ -19,6 +19,7 @@ Ensure your latest code (with the `FirebaseConfig` updates) is pushed to your Gi
    - Click and drag the **MySQL service** onto the **Backend service** in the Railway canvas.
    - Or, go to the **Backend service** -> **Settings** -> **Services** -> **Connect Service** and select MySQL.
    - This "links" them so Railway automatically gives the backend the database credentials.
+   - **Note:** By default, Railway creates a database named `railway`. My code now uses this as the default.
 
 ## 4. Configure Environment Variables
 Go to your **backend service** settings in Railway, click the **Variables** tab. 
