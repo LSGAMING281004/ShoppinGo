@@ -12,20 +12,18 @@ Ensure your latest code (with the `FirebaseConfig` updates) is pushed to your Gi
 4. Choose the `ShoppinGo` repository.
 5. In the "Project Settings", set the **Root Directory** to `backend`.
 
-## 3. Add a MySQL Database
+## 3. Add and LINK a MySQL Database
 1. In your Railway project dashboard, click **+ New**.
 2. Select **Database** -> **Add MySQL**.
-3. Once created, click on the MySQL service and go to the **Variables** tab.
-4. Copy the following values:
-   - `MYSQL_URL` (or construct it from host, port, etc.)
-   - `MYSQLUSER`
-   - `MYSQLPASSWORD`
-   - `MYSQLDATABASE`
+3. **CRITICAL STEP (Linking):**
+   - Click and drag the **MySQL service** onto the **Backend service** in the Railway canvas.
+   - Or, go to the **Backend service** -> **Settings** -> **Services** -> **Connect Service** and select MySQL.
+   - This "links" them so Railway automatically gives the backend the database credentials.
 
 ## 4. Configure Environment Variables
-Go to your **backend service** (not the MySQL service) settings in Railway, click the **Variables** tab.
+Go to your **backend service** settings in Railway, click the **Variables** tab. 
 
-Railway will automatically inject `MYSQLHOST`, `MYSQLPORT`, `MYSQLUSER`, `MYSQLPASSWORD`, and `MYSQLDATABASE` if you have linked the MySQL service to your backend. You only need to add:
+If linked correctly, Railway auto-injects the database variables. You ONLY need to add:
 
 | Variable Name | Value |
 | :--- | :--- |
