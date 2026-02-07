@@ -23,15 +23,14 @@ Ensure your latest code (with the `FirebaseConfig` updates) is pushed to your Gi
    - `MYSQLDATABASE`
 
 ## 4. Configure Environment Variables
-Go to your **backend service** (not the MySQL service) settings in Railway, click the **Variables** tab, and add the following:
+Go to your **backend service** (not the MySQL service) settings in Railway, click the **Variables** tab.
+
+Railway will automatically inject `MYSQLHOST`, `MYSQLPORT`, `MYSQLUSER`, `MYSQLPASSWORD`, and `MYSQLDATABASE` if you have linked the MySQL service to your backend. You only need to add:
 
 | Variable Name | Value |
 | :--- | :--- |
-| `PORT` | `8080` (Railway usually handles this automatically) |
-| `DB_URL` | `${{MySQL.MYSQL_URL}}` (Use the reference to your MySQL service) |
-| `DB_USERNAME` | `${{MySQL.MYSQLUSER}}` |
-| `DB_PASSWORD` | `${{MySQL.MYSQLPASSWORD}}` |
 | `FIREBASE_CONFIG_JSON` | **Paste the ENTIRE content of your Firebase JSON file here.** |
+| `PORT` | `8080` (Railway usually handles this automatically) |
 | `SHOW_SQL` | `true` (Optional, for debugging) |
 
 > [!TIP]
