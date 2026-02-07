@@ -17,17 +17,31 @@ import java.util.List;
 @Configuration
 public class FirebaseConfig {
 
-    @Value("${firebase.config.path}")
+    @Value("${firebase.config.path:}")
     private String firebaseConfigPath;
+
+    @Value("${firebase.config.json:}")
+    private String firebaseConfigJson;
 
     @PostConstruct
     public void initialize() {
         try {
             List<FirebaseApp> apps = FirebaseApp.getApps();
             if (apps.isEmpty()) {
-                // Use ClassPathResource to load from src/main/resources
-                InputStream serviceAccount = new ClassPathResource(firebaseConfigPath).getInputStream();
-                // ClassPathResource("firebase-service-account.json").getInputStream();
+                InputStream serviceAccount;
+
+                if (firebaseConfigJson != null && !firebaseConfigJson.trim().isEmpty()) {
+                    // Load from JSON string (Environment Variable)
+                    serviceAccount = new java.io.ByteArrayInputStream(firebaseConfigJson.getBytes());
+                    System.out.println("Loading Firebase credentials from environment variable");
+                } else if (firebaseConfigPath != null && !firebaseConfigPath.trim().isEmpty()) {
+                    // Load from ClassPathResource
+                    serviceAccount = new ClassPathResource(firebaseConfigPath).getInputStream();
+                    System.out.println("Loading Firebase credentials from file: " + firebaseConfigPath);
+                } else {
+                    throw new IOException(
+                            "No Firebase configuration found (neither JSON string nor file path provided)");
+                }
 
                 FirebaseOptions options = FirebaseOptions.builder()
                         .setCredentials(GoogleCredentials.fromStream(serviceAccount))
