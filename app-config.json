@@ -1,0 +1,13 @@
+{
+	"runtime": "java17",
+	"build_command": "./mvnw.cmd clean package -DskipTests",
+	"run_command": "java -Dserver.port=8080 -jar target/backend-0.0.1-SNAPSHOT.jar",
+	"stack": "ubuntu-22.04",
+	"env_variables": {
+		"DB_URL": "jdbc:mysql://b7zapt9y8qqwaunircuf-mysql.services.clever-cloud.com:3306/b7zapt9y8qqwaunircuf",
+		"DB_USERNAME": "uxjg8efwxllkmcet",
+		"DB_PASSWORD": "4AXQKNnBDDKtTbPofnf8",
+		"FIREBASE_CONFIG_PATH": "shoppingo-acb4f-firebase-adminsdk-fbsvc-6e012aca83.json",
+		"SHOW_SQL": "false"
+	}
+}

@@ -1,0 +1,20 @@
+# Maven / Java
+target/
+.mvn/
+*.class
+*.log
+*.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Secrets (CRITICAL)
+src/main/resources/*.json
+application-*.properties
+!src/main/resources/application.properties
+
+# OS
+.DS_Store
+Thumbs.db
